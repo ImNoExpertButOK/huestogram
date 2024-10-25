@@ -12,9 +12,9 @@ Created this cool little script some time ago to analyse the main colors of a fe
 You can use the script directly from the command line. It can take three parameters:
 
 ```
-  	-b, --bins  	Number of subdivisions (bins) on the HSL scale. Default value is 36.
-  	-p, --path		Path to a directory containing images to be analyzed. Searches for PNG and JPG files images only.
-  	-c, --colors 	How many dominant colors to extract for each image file. Default value is 4.
+-b, --bins  	Number of subdivisions (bins) on the HSL scale. Default value is 36.
+-p, --path		Path to a directory containing images to be analyzed. Searches for PNG and JPG files images only.
+-c, --colors 	How many dominant colors to extract for each image file. Default value is 4.
 ```
 
 
