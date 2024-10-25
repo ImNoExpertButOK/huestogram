@@ -18,12 +18,13 @@ hues = []
 
 def generate_histogram(list_of_hues, bins):
     '''
-    Recebe uma lista de valores e um número de bins, e retorna um dicionário no formato:
-    {valor máximo:quantidade de valores que se encaixam entre min e max}
-    ou seja, cada chave representa um range entre valor mínimo e máximo daquela caixa.
-    Ainda pode ser otimizada, caso eu tenha paciência, já que para cada bin
-    ele tem fazer o loop em todos os valores da lista, mesmo os que
-    são obviamente fora daquela caixa. Talvez seja bom diminuir a lista conforme ando nela.
+    Takes in a list of hues and a number of desired bins 
+    and returns a dictionary in the format:
+
+    {"hue":[maximum_value1, maximum_value2, maximum_value3, etc], 
+    "count":[count1, count2, count3 etc]}
+
+    Both lists should contain the same number of elements.
     '''
     result = {"hue":[], "count":[]}
     bin_size = int(360/bins)
@@ -33,8 +34,8 @@ def generate_histogram(list_of_hues, bins):
         min = bin_size * (i - 1)
         max = bin_size * i
 
-        # Since I'm using i - 1 to get the previous value it creates 
-        # negative values on the first iteration of the loop. 
+        # Note: Since I'm using i - 1 to get the previous value it 
+        # creates negative values on the first iteration of the loop. 
         # Only proceed if it's equal or larger than zero.
         if min >= 0:
             for hue in sorted(list_of_hues):
@@ -51,10 +52,9 @@ for file in Path(path).glob("*"):
         color_thief = ColorThief(file)
         palette = color_thief.get_palette(color_count=palette_size, quality=5)
 
-        # Note: ColorThief library does something weird when you specify palette
-        # sizes smaller than 4. A palette size of 3 will generate 4 colors,
-        # a palette size of 2 will generate 3 colors, and a palette size of 1
-        # will not work. 
+        # Note: ColorThief library does weird things when you specify palette sizes
+        # smaller than 4. A palette size of 3 will generate 4 colors, a palette
+        # size of 2 will generate 3 colors, and a palette size of 1 will not work.
         for color in palette:
             hues.append(round(rgb_to_hsv(*color)[0] * 360))
 
