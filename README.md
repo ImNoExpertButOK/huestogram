@@ -9,7 +9,7 @@ Created this cool little script some time ago to analyse the main colors of a fe
 
 ## Usage
 
-You can use the script directly from the command line. It can take three parameters:
+You can use the script directly from the command line. It can take four parameters:
 
 ```
 -b, --bins  	Number of subdivisions (bins) on the HSL scale. Default value is 36.
