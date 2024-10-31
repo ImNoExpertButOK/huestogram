@@ -18,10 +18,10 @@ hues = []
 
 def generate_histogram(list_of_hues, bins):
     '''
-    Takes in a list of hues and a number of desired bins 
+    Takes in a list of hues and a number of desired bins
     and returns a dictionary in the format:
 
-    {"hue":[maximum_value1, maximum_value2, maximum_value3, etc], 
+    {"hue":[maximum_value1, maximum_value2, maximum_value3, etc],
     "count":[count1, count2, count3 etc]}
 
     Both lists should contain the same number of elements.
@@ -34,8 +34,8 @@ def generate_histogram(list_of_hues, bins):
         min = bin_size * (i - 1)
         max = bin_size * i
 
-        # Note: Since I'm using i - 1 to get the previous value it 
-        # creates negative values on the first iteration of the loop. 
+        # Note: Since I'm using i - 1 to get the previous value it
+        # creates negative values on the first iteration of the loop.
         # Only proceed if it's equal or larger than zero.
         if min >= 0:
             for hue in sorted(list_of_hues):
@@ -50,7 +50,7 @@ def generate_histogram(list_of_hues, bins):
 for file in Path(path).glob("*"):
     if file.suffix == ".png" or file.suffix == ".jpg":
         color_thief = ColorThief(file)
-        palette = color_thief.get_palette(color_count=palette_size, quality=5)
+        palette = color_thief.get_palette(color_count=palette_size)
 
         # Note: ColorThief library does weird things when you specify palette sizes
         # smaller than 4. A palette size of 3 will generate 4 colors, a palette
