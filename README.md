@@ -15,6 +15,7 @@ You can use the script directly from the command line. It can take three paramet
 -b, --bins  	Number of subdivisions (bins) on the HSL scale. Default value is 36.
 -p, --path		Path to a directory containing images to be analyzed. Searches for PNG and JPG files images only.
 -c, --colors 	How many dominant colors to extract for each image file. Default value is 4.
+-q, --quality Quality of the extraction of the palette for each image, expressed as how many pixels to skip over. Lower is better. More on color_thiefs official documentation. Default value is 10.
 ```
 
 
