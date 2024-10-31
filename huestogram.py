@@ -9,11 +9,13 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-b", "--bins", help="Number of subdivisions (bins) on the HSL scale. Default is 36.", type=int, default=36)
 parser.add_argument("-p", "--path", help="Path to a directory containing images to be analyzed.")
 parser.add_argument("-c", "--colors", help="How many dominant colors to extract for each image file. Default is 4.", default=4)
+parser.add_argument("-q", "--quality", help="Quality of the extraction of the palette for each image, expressed as how many pixels to skip over. Lower is better. More on color_thiefs official documentation. Default is 10.", type=int, default=10)
 args = parser.parse_args()
 
 path = args.path
 palette_size = args.colors
 bins = args.bins
+quality = args.quality
 hues = []
 
 def generate_histogram(list_of_hues, bins):
@@ -50,7 +52,7 @@ def generate_histogram(list_of_hues, bins):
 for file in Path(path).glob("*"):
     if file.suffix == ".png" or file.suffix == ".jpg":
         color_thief = ColorThief(file)
-        palette = color_thief.get_palette(color_count=palette_size)
+        palette = color_thief.get_palette(color_count=palette_size, quality=quality)
 
         # Note: ColorThief library does weird things when you specify palette sizes
         # smaller than 4. A palette size of 3 will generate 4 colors, a palette
